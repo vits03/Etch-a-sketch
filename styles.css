@@ -21,7 +21,7 @@ body {
    
 }
 .grid-container {
-    
+    box-shadow: -10px 10px rgb(197, 193, 186);
     border: 2px solid black;
     padding: 0px ;
     gap:1px;
@@ -95,6 +95,26 @@ footer {
 
 }
 
-button:hover{
-  
+#colorpicker {
+    display: flex;
+    margin-top: -4vh;
+    width:10vw;
+    height:5vh;
+   
+}
+
+.info {
+    font-size: 1.15em;
+    font-family: bb;
+    align-self: center;
+}
+
+.secret-link {
+    display: block;
+    font-family: bb;
+   text-decoration: none;
+   color:black;
+   border:2px solid black;
+   padding: 20px;
+   margin-bottom: -30px;
 }

@@ -55,10 +55,13 @@ for (let n=1;n<=(ROW*COLUMN);n++){
              square.style.backgroundColor=color;}}
       } );
     }
+    
+let secret=document.querySelector('.secret-link')
 let clear=document.querySelector(".clear");
 let rainbowbtn=document.querySelector(".rainbow");
 let logo =document.getElementById("logo");
 let eraser=document.querySelector('.eraser');
+let colorbtn=document.querySelector('.color-btn')
 console.log(logo);
 rainbowbtn.addEventListener('click',() => {toggle=true;});
 col=document.getElementById('colorpicker');
@@ -66,7 +69,8 @@ eraser.addEventListener('click',()=>  {toggle=false;color='white'})
 clear.addEventListener('click',() => {clear_all();});
 col.addEventListener('input',()=>{toggle=false;color=col.value;logo.style.color=col.value;});
 col.addEventListener('click',()=>{toggle=false;color=col.value;logo.style.color=col.value;});
-
+colorbtn.addEventListener('click',() => {toggle=false;color=col.value;})
+secret.addEventListener('click',()=>{secret.setAttribute("href","https://www.youtube.com/watch?v=dQw4w9WgXcQ")});
 function clear_all() {
   for (let n=1;n<=(ROW*COLUMN);n++){
        
