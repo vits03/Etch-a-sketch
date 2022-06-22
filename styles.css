@@ -21,7 +21,8 @@ body {
    
 }
 .grid-container {
-  
+    width: 40vw;
+    height: 70vh;
     box-shadow: -10px 10px rgb(197, 193, 186);
     border: 2px solid black;
     padding: 0px ;
@@ -36,11 +37,28 @@ body {
     -webkit-user-select: none;
     -ms-user-select: none
 }
-.grid {
+.grid-small {
+    
     margin: 0px;;
-    height: 2.5vh;
-    width:1.5vw;
-        background-color:white;
+    height:1.23em;
+    width:1.54em;
+    background-color:rgb(255, 255, 255);
+}
+
+.grid-medium {
+    
+    margin: 0px;;
+    height:0.86em;
+    width:1.08rem;
+    background-color:rgb(243, 243, 243);
+}
+
+.grid-large {
+    
+    margin: 0px;;
+    height:0.655em;
+    width:0.822em;
+    background-color:rgb(243, 243, 243);
 }
 
 .row {
@@ -88,7 +106,7 @@ footer {
 
 }
 
-.buttons button{
+.buttons button,.grid-size{
     transition: all 0.4s;
     box-shadow: -5px 5px rgb(172, 169, 164);
     font-size: 1.8rem;
@@ -119,13 +137,18 @@ footer {
 
 .secret-link {
     transition: all 0.4s;
-    display: block;
     font-family: bb;
    text-decoration: none;
    color:black;
    border:2px solid black;
    padding: 20px;
    box-shadow: -5px 5px rgb(172, 169, 164);
+}
+
+.size-section {
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 button:hover,a:hover {
@@ -137,5 +160,6 @@ button:hover,a:hover {
     color:whitesmoke;
     background-color: black;
 }
+
 
 

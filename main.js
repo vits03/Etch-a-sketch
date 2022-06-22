@@ -1,5 +1,5 @@
 const container =document.querySelector(".grid-container");
-console.log(container);
+
 
 let secret=document.querySelector('.secret-link')
 let clear=document.querySelector(".clear");
@@ -7,62 +7,92 @@ let rainbowbtn=document.querySelector(".rainbow");
 let logo =document.getElementById("logo");
 let eraser=document.querySelector('.eraser');
 let colorbtn=document.querySelector('.color-btn')
+let small=document.querySelector('.grid-size.small');
+let medium=document.querySelector('.grid-size.medium');
+let large=document.querySelector('.grid-size.large');
 
-let id =1;
+
+console.log(small,medium,large);
+
 let ROW=25;
 let COLUMN=25;
-for (let j=0;j<ROW;j++){
-    const row = document.createElement('div');
+ lastSize='grid-small'
+function createGrid(row,column,size="small"){
+let id =1;
+ROW=row;
+COLUMN=column;
+
+  for (let j=0;j<ROW;j++){
+    let row = document.createElement('div');
     row.setAttribute('draggable','false')
     row.classList.add('row');
+    row.setAttribute('id',`${j+1}`)
       for (let i=0;i<COLUMN;i++){
          const div = document.createElement('div');
          div.setAttribute('draggable', 'false');
-         div.classList.add('grid');
+         div.classList.add(`grid`);
+         div.classList.remove(lastSize)
+         div.classList.add(`grid-${size}`);
          div.setAttribute('id',id)
           row.appendChild(div);
          id++;
+         lastSize='grid-'+size;
     }
     container.appendChild(row);
-}
+}}
+
+createGrid(ROW,COLUMN);
 let toggle=false;
 let color="black";
 let draw=false;
-let rainbow=["#ff0000","#ffa500","#ffff00","#008000","#0000ff","#4b0082","#ee82ee"];
-let r=0;
+let rainbow=["rgb(205, 0, 0)","rgb(255, 128, 0)","rgb(255, 255, 0)","rgb(128, 255, 0)","rgb(0, 255, 0)","rgb(0, 255, 128)","rgb(127, 0, 255)","rgb(255, 51, 153)"];
 
+let r=0;
+  
 const get_color=()=>{
   r++
-  if( r>=8) {
+  if( r>=9) {
     r=0;
   } 
   return rainbow[r];
+
 }
+
+function events(){
 for (let n=1;n<=(ROW*COLUMN);n++){
-       
-       const square=document.querySelector(`.grid[id="${n}"]`);
+       console.log(ROW,COLUMN);
+       let square=document.querySelector(`.grid.${lastSize}[id="${n}"]`);
        container.addEventListener('mousedown',(e) => {
-        console.log("fsf");draw=true;});
+       draw=true;});
        
         container.addEventListener('mouseup',(e) => {
-            console.log("fsf");draw=false;});
+          draw=false;});
         console.log(draw);
        
        
         
       
-        console.log(n);
-        square.addEventListener('mousemove',(e) =>{   
+       
+        square.addEventListener('mousemove',(e) =>{  console.log(lastSize);  
             if (draw){
-              if (toggle){
-                square.style.backgroundColor=get_color();
+              
+              if (toggle   ){
+                if (!(rainbow.includes(square.style.backgroundColor))) {
+               
+                console.log(square.style.backgroundColor);
+                square.style.backgroundColor=get_color();}
+                else {
+                   void(0);
+                }
                 
               }
               else {
              
              square.style.backgroundColor=color;}}
+
       } );
-    }
+    }}
+events();
 select(colorbtn);    
 
 rainbowbtn.addEventListener('click',() => {toggle=true;select(rainbowbtn);});
@@ -73,13 +103,22 @@ col.addEventListener('input',()=>{toggle=false;color=col.value;logo.style.color=
 col.addEventListener('click',()=>{toggle=false;color=col.value;logo.style.color=col.value;select(colorbtn)});
 colorbtn.addEventListener('click',() => {toggle=false;color=col.value;select(colorbtn);})
 secret.addEventListener('click',()=>{secret.setAttribute("href","https://www.youtube.com/watch?v=dQw4w9WgXcQ")});
-
+small.addEventListener('click',()=>{clearGrid();createGrid(25,25,'small');events()})
+medium.addEventListener('click',()=>{clearGrid(); createGrid(35,35,'medium');events();})
+large.addEventListener("click",()=>{clearGrid(); createGrid(45,45,'large');events();})
 
 function clear_all() {
   for (let n=1;n<=(ROW*COLUMN);n++){
        
     const square=document.querySelector(`.grid[id="${n}"]`);
     square.style.backgroundColor="white";
+}
+}
+
+function clearGrid() {
+  for (let n=1;n<=(ROW);n++){
+    const row=document.querySelector(`.row[id="${n}"]`);
+    container.removeChild(row);
 }
 }
 
